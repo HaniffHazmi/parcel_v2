@@ -14,7 +14,7 @@ default: &default
   encoding: utf8mb4
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: parcel
-  password: <%= ENV["MY_APP_DATABASE_URL"] %>
+  password: <%= ENV["PARCEL_V2_DATABASE_PASSWORD"] %>
   socket: /var/run/mysqld/mysqld.sock
 
 development:
