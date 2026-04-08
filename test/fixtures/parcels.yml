@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tracking_number: MyString
+  student: one
+  courier: MyString
+  status: 1
+  received_at: 2026-04-09 00:56:07
+  delivered_at: 2026-04-09 00:56:07
+
+two:
+  tracking_number: MyString
+  student: two
+  courier: MyString
+  status: 1
+  received_at: 2026-04-09 00:56:07
+  delivered_at: 2026-04-09 00:56:07

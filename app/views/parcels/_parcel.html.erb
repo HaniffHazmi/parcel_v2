@@ -1,0 +1,26 @@
+<div id="<%= dom_id parcel %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Tracking number:</strong>
+    <%= parcel.tracking_number %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Courier:</strong>
+    <%= parcel.courier %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Status:</strong>
+    <%= status_badge(parcel) %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Student:</strong>
+    <%= parcel.student_id %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Received at:</strong>
+    <%= parcel.received_at %>
+  </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Delivered at:</strong>
+    <%= parcel.delivered_at %>
+  </p>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :parcels
   namespace :admin do
     get "dashboards/index"
   end

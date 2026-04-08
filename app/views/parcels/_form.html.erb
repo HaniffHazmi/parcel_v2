@@ -1,0 +1,47 @@
+<%= form_with(model: parcel, class: "contents") do |form| %>
+  <% if parcel.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(parcel.errors.count, "error") %> prohibited this parcel from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% parcel.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :tracking_number %>
+    <%= form.text_field :tracking_number, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": parcel.errors[:tracking_number].none?, "border-red-400 focus:outline-red-600": parcel.errors[:tracking_number].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :courier %>
+    <%= form.text_field :courier, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": parcel.errors[:courier].none?, "border-red-400 focus:outline-red-600": parcel.errors[:courier].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :status %>
+    <%= form.number_field :status, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": parcel.errors[:status].none?, "border-red-400 focus:outline-red-600": parcel.errors[:status].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :student_id %>
+    <%= form.text_field :student_id, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": parcel.errors[:student_id].none?, "border-red-400 focus:outline-red-600": parcel.errors[:student_id].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :received_at %>
+    <%= form.datetime_field :received_at, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": parcel.errors[:received_at].none?, "border-red-400 focus:outline-red-600": parcel.errors[:received_at].any?}] %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :delivered_at %>
+    <%= form.datetime_field :delivered_at, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": parcel.errors[:delivered_at].none?, "border-red-400 focus:outline-red-600": parcel.errors[:delivered_at].any?}] %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
