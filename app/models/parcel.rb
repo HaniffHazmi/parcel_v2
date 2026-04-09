@@ -1,5 +1,5 @@
 class Parcel < ApplicationRecord
-  belongs_to :student, class_name: "User"
+  belongs_to :resident, class_name: "User"
 
   enum status: {
     pending: 0,

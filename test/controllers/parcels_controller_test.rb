@@ -17,7 +17,7 @@ class ParcelsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create parcel" do
     assert_difference("Parcel.count") do
-      post parcels_url, params: { parcel: { courier: @parcel.courier, delivered_at: @parcel.delivered_at, received_at: @parcel.received_at, status: @parcel.status, student_id: @parcel.student_id, tracking_number: @parcel.tracking_number } }
+      post parcels_url, params: { parcel: { courier: @parcel.courier, delivered_at: @parcel.delivered_at, received_at: @parcel.received_at, status: @parcel.status, resident_id: @parcel.resident_id, tracking_number: @parcel.tracking_number } }
     end
 
     assert_redirected_to parcel_url(Parcel.last)
@@ -34,7 +34,7 @@ class ParcelsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update parcel" do
-    patch parcel_url(@parcel), params: { parcel: { courier: @parcel.courier, delivered_at: @parcel.delivered_at, received_at: @parcel.received_at, status: @parcel.status, student_id: @parcel.student_id, tracking_number: @parcel.tracking_number } }
+    patch parcel_url(@parcel), params: { parcel: { courier: @parcel.courier, delivered_at: @parcel.delivered_at, received_at: @parcel.received_at, status: @parcel.status, resident_id: @parcel.resident_id, tracking_number: @parcel.tracking_number } }
     assert_redirected_to parcel_url(@parcel)
   end
 

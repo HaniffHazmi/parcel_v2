@@ -3,10 +3,11 @@ class ParcelsController < ApplicationController
 
   # GET /parcels or /parcels.json
   def index
-    if current_user.student?
-      @parcels = current.user.parcels
+    @parcels =
+    if current_user.admin? || current_user.staff?
+      Parcel.all
     else
-      @parcels = Parcel.all
+      current_user.parcels
     end
   end
 
@@ -26,25 +27,18 @@ class ParcelsController < ApplicationController
   # POST /parcels or /parcels.json
   def create
     @parcel = Parcel.new(parcel_params)
+    @parcel.resident = current_user
 
     if @parcel.save
       respond_to do |format|
-        format.hrml { redirect_to parcels_path, notice: "Parcel created successfully." }
+        format.html do
+          redirect_to parcels_path, notice: "Parcel created successfully."
+        end
         format.turbo_stream
       end
     else
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
-
-    # respond_to do |format|
-    #   if @parcel.save
-    #     format.html { redirect_to @parcel, notice: "Parcel was successfully created." }
-    #     format.json { render :show, status: :created, location: @parcel }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @parcel.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /parcels/1 or /parcels/1.json
@@ -78,6 +72,10 @@ class ParcelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def parcel_params
-      params.expect(parcel: [ :tracking_number, :courier, :status, :student_id, :received_at, :delivered_at ])
+      # params.expect(parcel: [ :tracking_number, :courier, :status, :resident_id, :received_at, :delivered_at ])
+      params.require(:parcel).permit(
+        :tracking_number,
+        :courier
+      )
     end
 end

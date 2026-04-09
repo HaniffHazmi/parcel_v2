@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_08_165607) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_09_084224) do
   create_table "parcels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "courier"
     t.datetime "created_at", null: false
     t.datetime "delivered_at"
     t.datetime "received_at"
+    t.bigint "resident_id", null: false
     t.integer "status"
-    t.bigint "student_id", null: false
     t.string "tracking_number"
     t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_parcels_on_student_id"
+    t.index ["resident_id"], name: "index_parcels_on_resident_id"
     t.index ["tracking_number"], name: "index_parcels_on_tracking_number"
   end
 
@@ -28,14 +28,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_08_165607) do
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.integer "level"
+    t.string "matric_id"
+    t.string "name"
+    t.string "phone_number"
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
     t.integer "role", default: 0, null: false
+    t.integer "room_number"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "parcels", "users", column: "student_id"
+  add_foreign_key "parcels", "users", column: "resident_id"
 end
