@@ -5,9 +5,9 @@ class ParcelsController < ApplicationController
   def index
     @parcels =
     if current_user.admin? || current_user.staff?
-      Parcel.all
+      Parcel.all.order(created_at: :desc)
     else
-      current_user.parcels
+      current_user.parcels.order(created_at: :desc)
     end
   end
 
@@ -75,7 +75,8 @@ class ParcelsController < ApplicationController
       # params.expect(parcel: [ :tracking_number, :courier, :status, :resident_id, :received_at, :delivered_at ])
       params.require(:parcel).permit(
         :tracking_number,
-        :courier
+        :courier,
+        :received_at
       )
     end
 end
