@@ -23,4 +23,15 @@
     <strong class="block font-medium mb-1">Delivered at:</strong>
     <%= parcel.delivered_at %>
   </p>
+  <% if current_user.staff? || current_user.admin? %>
+  <% if parcel.pending? %>
+    <%= button_to "Mark Found", mark_found_parcel_path(parcel), method: :patch %>
+  <% elsif parcel.found? %>
+    <%= button_to "Mark Paid", mark_paid_parcel_path(parcel), method: :patch %>
+  <% elsif parcel.paid? %>
+    <%= button_to "Start Delivery", mark_in_delivery_parcel_path(parcel), method: :patch %>
+  <% elsif parcel.in_delivery? %>
+    <%= button_to "Complete Delivery", mark_delivered_parcel_path(parcel), method: :patch %>
+  <% end %>
+<% end %>
 </div>

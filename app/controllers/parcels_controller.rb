@@ -1,5 +1,32 @@
 class ParcelsController < ApplicationController
   before_action :set_parcel, :require_admin, only: %i[ show edit update destroy ]
+  before_action :set_parcel, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy,
+    :mark_found,
+    :mark_paid,
+    :mark_in_delivery,
+    :mark_delivered
+  ]
+
+  # Update parcel status
+  def mark_found
+    @parcel.update!(status: :found)
+    redirect_to parcels_path, notice: "Parcel marked as found"
+  end
+
+  def mark_paid
+    @parcel.update!(status: :paid)
+    redirect_to parcels_path, notice: "Payment verified"
+  end
+
+  def mark_in_delivery
+    @parcel.update!(status: :in_delivery)
+    redirect_to parcels_path, notice: "Parcel is now in  delivery"
+  end
+
 
   # GET /parcels or /parcels.json
   def index

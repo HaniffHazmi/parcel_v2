@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :parcels
+  resources :parcels do
+    member do
+      patch :mark_found
+      patch :mark_paid
+      patch :mark_in_delivery
+      patch :mark_delivered
+    end
+  end
   namespace :admin do
     get "dashboards/index"
   end
