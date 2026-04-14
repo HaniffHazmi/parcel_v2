@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   enum :role, { student: 0, staff: 1, admin: 2 }
+  enum :building, {
+    tun_dr_ismail: 0,
+    tun_fatimah: 1,
+    tun_syed_nasir: 2
+  }
+  enum :block, { a: 0, b: 1, c: 2, d: 3 }
 
   has_many :parcels, foreign_key: :resident_id
 
@@ -16,6 +22,8 @@ class User < ApplicationRecord
   validates :matric_id, uniqueness: true, allow_nil: true
   validates :level, inclusion: { in: 0..3 }, allow_nil: true
   validates :room_number, inclusion: { in: 1..16 }, allow_nil: true
+  validates :building, :block, presence: true, unless: :admin?
+
 
   private
 

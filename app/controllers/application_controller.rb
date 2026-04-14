@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [
       :name,
       :matric_id,
+      :building,
+      :block,
       :level,
       :room_number,
       :phone_number
@@ -24,6 +26,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [
       :name,
       :matric_id,
+      :building,
+      :block,
       :level,
       :room_number,
       :phone_number
